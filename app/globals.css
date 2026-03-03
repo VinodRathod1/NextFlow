@@ -2,26 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@layer utilities {
+  .animate-pulse-glow {
+    animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  @keyframes pulse-glow {
+
+    0%,
+    100% {
+      box-shadow: 0 0 15px rgba(251, 191, 36, 0.6);
+      transform: translateY(-4px) scale(1.01);
+    }
+
+    50% {
+      box-shadow: 0 0 30px rgba(251, 191, 36, 0.9);
+      transform: translateY(-6px) scale(1.02);
+    }
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@layer base {
+  body {
+    @apply antialiased text-slate-900 bg-slate-50;
   }
 }
